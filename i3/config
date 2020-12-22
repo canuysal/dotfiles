@@ -15,6 +15,9 @@ gaps outer 10
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+#add Alt_R to Mod3 group
+exec --no-startup-id xmodmap -e 'remove Mod1 = Alt_R'
+exec --no-startup-id xmodmap -e 'add Mod3 = Alt_R'
 set $mod Mod3
 
 # workspace layouts:
