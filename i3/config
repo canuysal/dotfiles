@@ -141,7 +141,7 @@ bindsym $mod+s exec --no-startup-id ~/.config/i3/scripts/empty_workspace.sh
 #bind program to workspace
 assign [class="Thunar"] $ws4
 for_window [class=Thunar] focus
-assign [class="QtCreator"] $ws5
+assign [class="QtCreator"] $ws1
 for_window [class=QtCreator] focus
 assign [class="Google-chrome"] $ws3
 for_window [class=Google-chrome] focus
@@ -155,14 +155,13 @@ exec --no-startup-id sleep 2 && xfce4-terminal
 exec --no-startup-id blueberry-tray
 
 #transparency 
-exec --no-startup-id xcompmgr -c
-#exec --no-startup-id picom -cC
+exec --no-startup-id compton -b
 
 #networkmanager-applet
 exec --no-startup-id nm-applet
 
 #set wallpaper
-exec --no-startup-id nitrogen --restore
+exec --no-startup-id feh --bg-scale /home/can/Pictures/wallpaper
 
 #set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -223,14 +222,13 @@ bindsym $mod+Shift+10 move container to workspace $ws10
 workspace $ws1 output DVI-D-0
 workspace $ws2 output DVI-D-0
 workspace $ws8 output DVI-D-0
-workspace $ws9 output DVI-D-0
+workspace $ws9 output HDMI-1
 workspace $ws3 output HDMI-1
 workspace $ws4 output HDMI-1
 workspace $ws5 output HDMI-1
 workspace $ws6 output DP-0
 workspace $ws7 output DP-0
 workspace $ws10 output DP-0
-
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
