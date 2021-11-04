@@ -18,7 +18,10 @@ gaps outer 10
 #add Alt_R to Mod3 group
 #exec_always --no-startup-id xmodmap -e 'remove Mod1 = Alt_R'
 #exec_always --no-startup-id xmodmap -e 'add Mod3 = Alt_R'
+exec_always --no-startup-id xmodmap ~/.config/xmodmap/xmodmap.conf
 set $mod Mod3
+
+#add Alt_R to Mod3
 
 #call default screen settings
 exec_always --no-startup-id ~/.screenlayout/screenDefault.sh
@@ -161,7 +164,7 @@ exec --no-startup-id compton -b
 exec --no-startup-id nm-applet
 
 #set wallpaper
-exec --no-startup-id feh --bg-scale /home/can/Pictures/wallpaper
+exec-always --no-startup-id feh --bg-scale ~/.config/wallpaper/
 
 #set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -332,7 +335,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # App shortcuts
-bindsym $mod+w exec "/usr/bin/firefox"
+bindsym $mod+w exec "/usr/bin/google-chrome"
 bindsym $mod+n exec gnome-terminal -e ranger
 bindsym Print exec "/usr/bin/gnome-screenshot -a"
 
