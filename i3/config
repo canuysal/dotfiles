@@ -8,23 +8,21 @@
 # wget --backups=1 https://raw.githubusercontent.com/endeavouros-team/i3-EndeavourOS/master/.config/i3/config -P ~/.config/i3/
 
 #i3gaps
-gaps inner 10
-gaps outer 10
+gaps inner 50
+gaps outer 20
 
 # i3 config file
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 #add Alt_R to Mod3 group
-#exec_always --no-startup-id xmodmap -e 'remove Mod1 = Alt_R'
-#exec_always --no-startup-id xmodmap -e 'add Mod3 = Alt_R'
 exec_always --no-startup-id xmodmap ~/.config/xmodmap/xmodmap.conf
 set $mod Mod3
 
 #add Alt_R to Mod3
 
 #call default screen settings
-exec_always --no-startup-id ~/.screenlayout/screenDefault.sh
+exec_always --no-startup-id ~/.config/screenlayout/screenDefault.sh
 
 # workspace layouts:
 #default i3 tiling mode
@@ -144,7 +142,7 @@ bindsym $mod+s exec --no-startup-id ~/.config/i3/scripts/empty_workspace.sh
 #bind program to workspace
 assign [class="Thunar"] $ws4
 for_window [class=Thunar] focus
-assign [class="QtCreator"] $ws1
+assign [class="QtCreator"] $ws5
 for_window [class=QtCreator] focus
 assign [class="Google-chrome"] $ws3
 for_window [class=Google-chrome] focus
@@ -153,8 +151,6 @@ for_window [class=Spotify] focus
 
 # Autostart apps
 exec --no-startup-id sleep 2 && xfce4-terminal
-#exec --no-startup-id firefox
-#exec --no-startup-id sleep 3 && thunar
 exec --no-startup-id blueberry-tray
 
 #transparency 
@@ -164,16 +160,13 @@ exec --no-startup-id compton -b
 exec --no-startup-id nm-applet
 
 #set wallpaper
-exec-always --no-startup-id feh --bg-scale ~/.config/wallpaper/
+exec_always --no-startup-id feh --bg-scale ~/.config/wallpaper/
 
 #set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
 
 # Desktop notifications
 exec --no-startup-id /usr/bin/dunst
-
-#get latest configs from GitHub
-exec --no-startup-id git clone https://github.com/endeavouros-team/i3-EndeavourOS.git ~/.config/i3/original/
 
 # update notification should be set to tray and notification
 #exec --no-startup-id sleep 15 && eos-update-notifier
@@ -208,7 +201,6 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
-bindsym $mod+10 workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -224,14 +216,13 @@ bindsym $mod+Shift+10 move container to workspace $ws10
 
 workspace $ws1 output DVI-D-0
 workspace $ws2 output DVI-D-0
-workspace $ws8 output DVI-D-0
-workspace $ws9 output HDMI-1
-workspace $ws3 output HDMI-1
-workspace $ws4 output HDMI-1
-workspace $ws5 output HDMI-1
+workspace $ws3 output DVI-D-0
+workspace $ws4 output DP-0
+workspace $ws5 output DP-0
 workspace $ws6 output DP-0
-workspace $ws7 output DP-0
-workspace $ws10 output DP-0
+workspace $ws7 output HDMI-1
+workspace $ws8 output HDMI-1
+workspace $ws9 output HDMI-1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
