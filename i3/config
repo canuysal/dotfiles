@@ -140,13 +140,11 @@ set $ws10 "10"
 bindsym $mod+s exec --no-startup-id ~/.config/i3/scripts/empty_workspace.sh
 
 #bind program to workspace
-assign [class="Thunar"] $ws4
-for_window [class=Thunar] focus
 assign [class="QtCreator"] $ws5
 for_window [class=QtCreator] focus
-assign [class="Google-chrome"] $ws3
+assign [class="Google-chrome"] $ws1
 for_window [class=Google-chrome] focus
-assign [class="Spotify"] $ws6
+assign [class="Spotify"] $ws9
 for_window [class=Spotify] focus
 
 # Autostart apps
@@ -220,9 +218,9 @@ workspace $ws3 output DVI-D-0
 workspace $ws4 output DP-0
 workspace $ws5 output DP-0
 workspace $ws6 output DP-0
-workspace $ws7 output HDMI-1
-workspace $ws8 output HDMI-1
-workspace $ws9 output HDMI-1
+workspace $ws7 output HDMI-0
+workspace $ws8 output HDMI-0
+workspace $ws9 output HDMI-0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
