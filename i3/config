@@ -314,7 +314,7 @@ bindsym Mod1+Mod4+Up workspace prev
 bindsym Mod1+Mod4+Down workspace next
 
 # Lock the system
-bindsym $mod+l exec i3lock -i ~/.config/i3/i3-lock-screen.png -t -f
+bindsym $mod+l exec i3lock -c 000000 -t
 
 
 # rofi bindings fancy application menu
