@@ -12,3 +12,15 @@ sudo apt install libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev 
 
 git clone https://github.com/jaagr/polybar.git
 cd polybar && ./build.sh
+
+# install much needed calculator mode
+sudo apt install rofi-dev qalc libtool
+git clone https://github.com/svenstaro/rofi-calc
+cd rofi-calc
+autoreconf -i
+mkdir build
+cd build/
+../configure
+make
+sudo make install
+
