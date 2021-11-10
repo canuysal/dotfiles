@@ -298,7 +298,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # App shortcuts
 bindsym $mod+w exec "/usr/bin/google-chrome"
-bindsym $mod+n exec gnome-terminal -e ranger
+bindsym $mod+n exec alacritty -e ranger
 bindsym Print exec "/usr/bin/gnome-screenshot -a"
 
 # Redirect sound to headphones
