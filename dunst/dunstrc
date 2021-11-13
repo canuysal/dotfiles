@@ -27,7 +27,7 @@
     dmenu = /usr/bin/dmenu -p dunst
     browser = /usr/bin/google-chrome-beta -new-tab
     icon_position = left
-    icon_folders = /usr/share/icons/Notifications
+    icon_folders = /usr/share/icons/Papirus/16x16/apps:/usr/share/icons/Papirus/16x16/status/:/usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x16/legacy/
  
 [frame]
     color = "#ffffff"
