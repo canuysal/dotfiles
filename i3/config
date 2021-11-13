@@ -147,10 +147,6 @@ for_window [class=Google-chrome] focus
 assign [class="Spotify"] $ws9
 for_window [class=Spotify] focus
 
-# Autostart apps
-exec --no-startup-id sleep 2 && xfce4-terminal
-exec --no-startup-id blueberry-tray
-
 #transparency 
 exec --no-startup-id compton -b
 
@@ -297,8 +293,8 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # App shortcuts
-bindsym $mod+w exec "/usr/bin/google-chrome"
 bindsym $mod+n exec alacritty -e ranger
+bindsym $mod+w exec "/usr/bin/google-chrome-stable"
 bindsym Print exec "/usr/bin/gnome-screenshot -a"
 
 # Redirect sound to headphones
