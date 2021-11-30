@@ -1,9 +1,9 @@
 #!/bin/bash
 
-sudo apt update
 
 sudo add-apt-repository -y ppa:regolith-linux/stable
-sudo apt install -y i3 i3-gaps feh rofi arandr
+sudo apt update
+sudo apt install -y i3-gaps feh rofi arandr playerctl
 
 # polybar
 sudo apt install build-essential git cmake cmake-data pkg-config python3-sphinx python3-packaging libuv1-dev libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev
