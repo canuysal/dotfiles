@@ -8,8 +8,8 @@
 # wget --backups=1 https://raw.githubusercontent.com/endeavouros-team/i3-EndeavourOS/master/.config/i3/config -P ~/.config/i3/
 
 #i3gaps
-gaps inner 50
-gaps outer 20
+gaps inner 10
+gaps outer 10
 
 # i3 config file
 #
@@ -26,14 +26,11 @@ exec_always --no-startup-id ~/.config/screenlayout/screenDefault.sh
 
 # workspace layouts:
 #default i3 tiling mode
-workspace_layout default
+workspace_layout stacking
 
 #do not show titlebar on windows: 
 new_window 1pixel
- 
-#workspace_layout stacking
 
-#workspace_layout tabbed
 #Tiling mode is tabbed:
 #so each new window will open fullscreen as a tab, you can change between window-tabs with mouse or shortcut:
 #
@@ -140,15 +137,16 @@ set $ws10 "10"
 bindsym $mod+s exec --no-startup-id ~/.config/i3/scripts/empty_workspace.sh
 
 #bind program to workspace
-assign [class="QtCreator"] $ws5
-for_window [class=QtCreator] focus
-assign [class="Google-chrome"] $ws1
-for_window [class=Google-chrome] focus
+#assign [class="QtCreator"] $ws2
+#for_window [class=QtCreator] focus
+#assign [class="Google-chrome"] $ws1
+#for_window [class=Google-chrome] focus
 assign [class="Spotify"] $ws9
 for_window [class=Spotify] focus
+for_window [title=IVSS] floating enable
 
 #transparency 
-exec --no-startup-id compton -b
+picom --config ~/.config/picom/picom.conf
 
 #networkmanager-applet
 exec --no-startup-id nm-applet
@@ -208,12 +206,12 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+10 move container to workspace $ws10
 
-workspace $ws1 output DVI-D-0
-workspace $ws2 output DVI-D-0
-workspace $ws3 output DVI-D-0
-workspace $ws4 output DP-0
-workspace $ws5 output DP-0
-workspace $ws6 output DP-0
+workspace $ws1 output DP-0
+workspace $ws2 output DP-0
+workspace $ws3 output DP-0
+workspace $ws4 output DP-2
+workspace $ws5 output DP-2
+workspace $ws6 output DP-2
 workspace $ws7 output HDMI-0
 workspace $ws8 output HDMI-0
 workspace $ws9 output HDMI-0
@@ -266,36 +264,57 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000 
+#  client.focused          #556064 #556064 #80FFF9 #FDF6E3
+#  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+#  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+#  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+#  client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
-  client.background       #2B2C2B
+#  client.background       #2B2C2B
+
+
+# color defines for zenburn styled i3
+set $bg     #2c2c2e
+set $fg     #9f9f9f
+set $hi     #efef8f
+set $ac     #a0afa0
+set $tx     #040404
+set $ia     #8f8f8f
+set $be     #8faf9f
+set $yw     #ccdc90
+set $gn     #88b090
+set $rd     #e89393
+
+# set some nice colors      border     background  text
+client.focused              $ac        $ac         $tx
+client.unfocused            $bg        $bg         $ia
+client.focused_inactive     $bg        $bg         $ac
+client.urgent               $rd        $rd         $tx
 
 # Multimedia Keys
 
 # volume
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+#bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+#bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
+bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
 
 # gradular volume control
-bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
-bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
+#bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
+#bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
 
 # mute
-bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
+#bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
+bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl --player=spotify play-pause  
+bindsym XF86AudioNext exec playerctl --player=spotify next 
+bindsym XF86AudioPrev exec playerctl --player=spotify previous
 
 # App shortcuts
-bindsym $mod+n exec alacritty -e ranger
+bindsym $mod+n exec gnome-terminal -e ranger
 bindsym $mod+w exec "/usr/bin/google-chrome-stable"
-bindsym Print exec "/usr/bin/gnome-screenshot -a"
+bindsym Print exec "flameshot gui"
 
 # Redirect sound to headphones
 bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
@@ -311,6 +330,11 @@ bindsym Mod1+Mod4+Down workspace next
 
 # Lock the system
 bindsym $mod+l exec i3lock -c 000000 -t
+
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:Ubuntu Sans Mono 10
+font pango:Ubuntu Sans Mono, Terminus Bold Semi-Condensed 11
+font pango:Ubuntu 11px
 
 
 # rofi bindings fancy application menu
